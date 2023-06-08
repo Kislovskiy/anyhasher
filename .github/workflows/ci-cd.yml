@@ -37,3 +37,20 @@ jobs:
 
       - name: Run and audit
         run: cd frontend && npm audit
+
+  lint:
+    name: Ensure code style
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+
+      - name: Install dependencies
+        run: cd frontend && npm i
+
+      - name: Run linter
+        run: cd frontend && npm run lint
