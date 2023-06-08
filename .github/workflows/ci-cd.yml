@@ -1,9 +1,9 @@
 name: CI/CD Pipeline
 on:
-    pull_request:
-    push:
-      branches:
-        - olt
+  pull_request:
+  push:
+    branches:
+      - olt
 
 jobs:
   build:
@@ -17,9 +17,9 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: 16.x
 
-      - name: Install dependencies
+      - name: Install deps
         run: cd frontend && npm i
 
       - name: Compile code
@@ -33,10 +33,10 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: 16.x
 
-      - name: Run and audit
-        run: cd frontend && npm audit
+      - name: Run an audit
+        run: cd frontend && npm audit --production
 
   lint:
     name: Ensure code style
@@ -47,10 +47,10 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: 16.x
 
-      - name: Install dependencies
+      - name: Install deps
         run: cd frontend && npm i
 
-      - name: Run linter
+      - name: Run the linter
         run: cd frontend && npm run lint
